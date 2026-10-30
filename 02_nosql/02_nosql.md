@@ -71,6 +71,7 @@ py -3.13 "mongo_load (1).py" ..\..\dream2000_offers_2026-10-26.json
 | 2026-10-27 | 557 | 345 | 904 |
 | 2026-10-28 | — | — | — |
 | 2026-10-29 | 583 | 357 | 957 |
+| 2026-10-30 | 561 | 362 | — (Jumia 503 / timeout) |
 
 28-Oct was missed (prices can only be scraped on the day itself). Each day: run the three Colab notebooks, download the three json files to the laptop, then load each one:
 ```
