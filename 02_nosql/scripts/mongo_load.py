@@ -37,8 +37,12 @@ CATEGORIES = {"phone", "tv"}
 def get_db(client=None):
     """catalog database; settings from environment variables (docker-compose.yaml / .env)."""
     if client is None:
-        client = MongoClient(host=os.getenv("MONGO_HOST", "localhost"), port=int(os.getenv("MONGO_PORT", "27017")),
-                             username=os.getenv("MONGO_USER", "mongo_admin"), password=os.getenv("MONGO_PASSWORD", "mongo_password"))
+        host, port = os.getenv("MONGO_HOST", "localhost"), int(os.getenv("MONGO_PORT", "27017"))
+        user = os.getenv("MONGO_USER")   # not set = local MongoDB without a password (Aya's laptop)
+        if user:
+            client = MongoClient(host=host, port=port, username=user, password=os.getenv("MONGO_PASSWORD"))
+        else:
+            client = MongoClient(host=host, port=port)
     return client[os.getenv("MONGO_DB", "catalog")]
 
 
@@ -54,7 +58,8 @@ def ensure_indexes(db):
 def _to_date(value):
     """'2026-10-27T06:00:12Z' -> datetime (UTC). Leaves real dates and None as they are."""
     if isinstance(value, str):
-        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        # also accepts milliseconds, e.g. '2026-10-26T13:02:05.761Z' (Dream 2000 file of 26-Oct)
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc)
     return value
 
 
