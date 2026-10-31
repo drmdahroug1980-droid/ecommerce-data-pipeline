@@ -1,2 +1,0 @@
-brand,category,suffix,rule,example,status
-samsung,tv,UXEG,remove at the end of the code (region suffix),UA32H5000FUXEG -> UA32H5000F,planned - confirm after first scrape (A7)
