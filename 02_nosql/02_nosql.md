@@ -91,7 +91,7 @@ Done 27-Oct-2026 in Colab notebook `A7_lists.ipynb`, from the 27-Oct scrape (Dre
 
 | File | Rows | What it does | Result |
 |---|---|---|---|
-| `category_map.csv` | 16 | site category -> phone / tv | all 16 site categories mapped |
+| `category_map.csv` | 24 | site category -> phone / tv | all 24 site categories mapped |
 | `brand_aliases.csv` | 13 | other spelling -> one brand (after lower case) | 86 brand names -> 71 |
 | `model_suffixes.csv` | 17 | prefix / suffix removed from TV model codes (`*` = all brands) | TV models on 2+ sites: 26 -> 30 |
 
